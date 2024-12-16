@@ -1,0 +1,50 @@
+# built with love and setuptools
+# install for dev: `pip install -e .'[dev]'`
+
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "dsmate"
+version = "0.0.1"
+description = "A mate's repo for training models with Deepspeed."
+readme = "README.md"
+authors = [{ name="Chris Kerwell Gresla", email="ckgresla@gmail.com" }]
+license = { file="LICENSE" }
+dependencies = [
+    "art",
+    "flax",
+    "fire",  # no more argparse
+    "rich",  # beautiful and helpful stdout- https://github.com/Textualize/rich
+    "python-dotenv >= 1.0.0",
+    "torch",
+    "pandas",
+    "pandas-stubs",
+    "wandb",
+    "deepspeed==0.16.1",
+]
+requires-python = ">=3.9"
+
+
+[project.optional-dependencies]
+# Active Development
+dev = [
+    "pre-commit",  # script exec on commit- https://pre-commit.com/
+    "mypy",  # linting is one thing, analyzing those TYPES another- 
+    "ruff",  # formatting & linting w speed- https://github.com/astral-sh/ruff
+    "pytest",  # real wizards test their code- https://github.com/pytest-dev/pytest
+    "nvitop",  # tasteful GPU/CPU monitor
+]
+
+mpi = [
+    # required for the mpi launcher, `mpirun`
+    # `sudo apt install openmpi-bin libopenmpi-dev`
+    "mpi4py",
+]
+
+[tool.ruff]
+# where to apply ruff?
+src = ["src", "tests", "scripts"]

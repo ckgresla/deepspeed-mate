@@ -1,1 +1,1 @@
-mapping = {}
+mapping: dict[str, str] = {}
