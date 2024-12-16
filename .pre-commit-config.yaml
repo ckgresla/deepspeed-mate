@@ -1,0 +1,23 @@
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.8.3
+  hooks:
+  # Lint and Fix - Critical step
+  - id: ruff
+    name: Lint and Fix
+    types_or: [python, pyi]
+    args: [--fix]
+    pass_filenames: false
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.8.3
+  hooks:
+  # Sort Imports - Runs only if Lint and Fix passes
+  - id: ruff
+    name: Sort Imports
+    types_or: [python, pyi]
+    args: [--select, I, --fix]
+  # Format Code - Runs only if previous steps pass
+  - id: ruff-format
+    name: Format Code
+    types_or: [python, pyi]
